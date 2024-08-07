@@ -22,6 +22,18 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        _rb = GetComponent<Rigidbody>();
+        Init();
+    }
+
+    void Update()
+    {
+        HandleMovement();
+        HandleJump();        
+    }
+
+    private void Init()
+    {
         playerStateMachine = new StateMachine<PlayerStates>();
         playerStateMachine.Init();
         playerStateMachine.RegisterStates(PlayerStates.IDLE, new StateBase());
@@ -29,13 +41,6 @@ public class PlayerController : MonoBehaviour
         playerStateMachine.RegisterStates(PlayerStates.JUMPING, new StateBase());
 
         playerStateMachine.SwitchState(PlayerStates.IDLE);
-        _rb = GetComponent<Rigidbody>();
-    }
-
-    void Update()
-    {
-        HandleMovement();
-        HandleJump();        
     }
 
     private void HandleMovement()
