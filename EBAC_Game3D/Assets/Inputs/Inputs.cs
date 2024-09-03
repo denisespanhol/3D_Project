@@ -42,7 +42,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""2fef42a6-9595-41d6-9e55-f5344c7e282d"",
                     ""path"": ""<Keyboard>/x"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Shoot"",

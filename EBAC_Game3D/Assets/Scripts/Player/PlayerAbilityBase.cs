@@ -26,7 +26,11 @@ public class PlayerAbilityBase : MonoBehaviour
 
     private void OnEnable()
     {
-        if (inputs != null) inputs.Enable();
+        if (inputs != null)
+        {
+            inputs.Enable();
+        }
+        
     }
 
     private void OnDisable()
