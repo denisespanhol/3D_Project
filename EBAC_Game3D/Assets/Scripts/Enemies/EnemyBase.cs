@@ -4,9 +4,11 @@ using UnityEngine;
 using DG.Tweening;
 using Animation;
 
-public class EnemyBase : MonoBehaviour
+public class EnemyBase : MonoBehaviour, IDamageable
 {
-
+    public Collider collider;
+    public FlashColor flashColor;
+    public ParticleSystem particlesSystem;
     public float startLife = 10f;
 
     [SerializeField] private float _currentLife;
@@ -42,12 +44,17 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void OnKill()
     {
+        if (collider != null) collider.enabled = false;
         Destroy(gameObject, 3f);
         PlayAnimationByTrigger(AnimationType.DEATH);
     }
 
     public void OnDamage(float f)
     {
+        if (flashColor != null) flashColor.Flash();
+        if (particlesSystem != null) particlesSystem.Emit(15);
+
+
         _currentLife -= f;
 
         if (_currentLife <= 0)
@@ -65,6 +72,11 @@ public class EnemyBase : MonoBehaviour
     public void PlayAnimationByTrigger(AnimationType animationType)
     {
         _animationBase.PlayAnimationByTrigger(animationType);
+    }
+
+    public void Damage(float damage)
+    {
+        OnDamage(damage);
     }
 
     #endregion
