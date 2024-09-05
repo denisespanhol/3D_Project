@@ -54,7 +54,6 @@ public class EnemyBase : MonoBehaviour, IDamageable
         if (flashColor != null) flashColor.Flash();
         if (particlesSystem != null) particlesSystem.Emit(15);
 
-
         _currentLife -= f;
 
         if (_currentLife <= 0)
@@ -73,11 +72,18 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         _animationBase.PlayAnimationByTrigger(animationType);
     }
+    #endregion
 
     public void Damage(float damage)
     {
         OnDamage(damage);
     }
 
-    #endregion
+    public void Damage(float damage, Vector3 dir)
+    {
+        // OnDamage(damage);
+
+        transform.position -= dir;
+    }
+
 }
